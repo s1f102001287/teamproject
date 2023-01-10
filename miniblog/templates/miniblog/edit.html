@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+{% load static %}
+<head>
+  <meta charset="UTF-8">
+  <title>edit</title>
+  <link rel="stylesheet" href="{% static 'detail.css' %}">
+</head>
+
+<body>
+  <div>
+    <h1>Edit article</h1>
+    <form action="{% url 'update' article.id %}" method="post">
+      {% csrf_token %}
+      <div>
+        <label for="titleInput">Title</label>
+        <input id="titleInput" name="title" type="text" placeholder="Input title" value="{{ article.title }}">
+      </div>
+      <div>
+        <label for="textInput">Text</label>
+        <textarea id="textInput" name="text" rows="3">{{ article.body }}</textarea>
+      </div>
+      <div>
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+  <a href="http://localhost:8000/mb/" class="btn-circle-stitch" style="float: right;">Home</a>
+</body>
+
+</html>

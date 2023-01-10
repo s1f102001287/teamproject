@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>新規投稿</title>
+  <link rel="stylesheet" href="{% static 'newPost.css' %}">
+</head>
+
+<body>
+  <h1>Create new post</h1>
+  <form action="{% url 'index' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="form-group">
+      <label for="titleInput">Title</label>
+      <input id="titleInput" name="title" type="text" placeholder="Input title" class="form-control">
+    </div>
+    <input type="file" name="myfile" class="myfile">
+    <div class="form-group">
+      <label for="textInput">Text</label>
+      <textarea id="textInput" name="text" rows="3" class="form-control"></textarea>
+    </div>
+    <div>
+      <button type="submit" class="btn-primary">Submit</button>
+    </div>
+    <a href="http://localhost:8000/mb/" class="btn-circle-stitch" style="float: right;">Home</a>
+  </form>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <link rel="stylesheet" href="{% static 'content.css' %}">
+  <script type="text/javascript" src="{% static 'content.js' %}"></script>
+</head>
+
+<body>
+  <h1 class="title">Photo Gram</h1>
+
+  <div class="main">
+    <div class="allpost">
+      <a href="{% url 'create' %}" class="btn-circle-stitch" style="float: right;">create</a>
+      <h2>All Post</h2>
+    </div>
+
+    {% if articles %}
+    {% for article in articles %}
+    <div class="article-color">
+      <div><a href="{% url 'detail' article.id %}" class="article-title">{{ article.title }}</a>
+        <br>
+        <small class="article-time">[{{ article.posted_at }}]</small>
+        <p style="text-align:center">
+        <a href="{% url 'detail' article.id %}">
+        <image src="mb{{ article.image.url }}">
+        </a>
+        </p>
+          <br>
+          <div>
+            <button onclick="like({{article.id}});" class="good">
+              <i>Like</i>
+              <span id="like{{article.id}}">{{ article.like }}</span>
+            </button>
+          </div>
+      </div>
+      <div class="text">
+        {{ article.body | linebreaksbr }}
+      </div>
+    </div>
+    <br>
+    {% endfor %}
+
+    {% else %}
+    <p>No article.</p>
+    {% endif %}
+
+
+  </div>
+</body>
+
+</html>
